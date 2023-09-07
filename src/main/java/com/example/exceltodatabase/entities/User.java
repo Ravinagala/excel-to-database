@@ -18,12 +18,12 @@ public class User {
         this.height = height;
         this.weight = weight;
     }
+    public User() {
+
+    }
 
     public int getId() {
         return id;
-    }
-
-    public User() {
     }
 
     public void setId(int id) {
