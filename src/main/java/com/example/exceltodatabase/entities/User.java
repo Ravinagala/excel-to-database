@@ -9,34 +9,40 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private double height;
+    private String height;
 
-    private double weight;
+    private String weight;
 
-    public User(String id, String height, String weight) {
+    public User(int id, String height, String weight) {
+        this.id = id;
+        this.height = height;
+        this.weight = weight;
     }
 
     public int getId() {
         return id;
     }
 
+    public User() {
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public double getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
-    public double getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 }

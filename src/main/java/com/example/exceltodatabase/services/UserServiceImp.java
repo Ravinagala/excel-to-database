@@ -42,13 +42,15 @@ public class UserServiceImp implements UserService {
     }
 
     private List<User> csvToUsers(InputStream inputStream) {
-        try {
-            BufferedReader fileReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        try( BufferedReader fileReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
             CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
+        ){
             List<User> users = new ArrayList<>();
             List<CSVRecord> records = csvParser.getRecords();
             for(CSVRecord csvRecord : records){
-                User user = new User(csvRecord.get("id"),csvRecord.get("height"),csvRecord.get("weight"));
+                User user = new User(Integer.parseInt(csvRecord.get("id")),
+                        (csvRecord.get("height")),
+                        (csvRecord.get("weight")));
                 users.add(user);
             }
             return users;
