@@ -30,6 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/getUsers")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<User> getUsers(){
         return userService.getUsers();
     }
