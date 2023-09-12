@@ -42,9 +42,9 @@ public class MySecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/customers/**","/roles/**").permitAll()
+                .requestMatchers("/customers/**").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("/users/**").authenticated()
+                .authorizeHttpRequests().requestMatchers("/users/**","/roles/**").authenticated()
                 .and().formLogin()
                 .and().build();
 
