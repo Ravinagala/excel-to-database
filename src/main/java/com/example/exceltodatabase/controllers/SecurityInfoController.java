@@ -21,6 +21,7 @@ public class SecurityInfoController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public List<SecurityInfo> getRoles(){
         return securityInfoSecurityDetailsService.getRoles();
     }

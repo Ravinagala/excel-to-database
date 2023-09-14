@@ -20,6 +20,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/upload")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file")MultipartFile file){
         if(userService.hasCsvFormat(file)){
             userService.processAndSaveData(file);
@@ -30,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping("/getUsers")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public List<User> getUsers(){
         return userService.getUsers();
     }
