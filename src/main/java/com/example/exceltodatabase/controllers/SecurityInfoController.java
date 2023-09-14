@@ -15,7 +15,7 @@ public class SecurityInfoController {
     SecurityInfoSecurityDetailsService securityInfoSecurityDetailsService;
 
     @PostMapping("/add-security-user")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN,ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String addNewUser(@RequestBody SecurityInfo securityInfo){
         return securityInfoSecurityDetailsService.addUser(securityInfo);
     }

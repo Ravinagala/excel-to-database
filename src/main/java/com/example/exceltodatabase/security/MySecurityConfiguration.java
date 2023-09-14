@@ -41,11 +41,12 @@ public class MySecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
+                .cors().and()
                 .authorizeHttpRequests()
                 .requestMatchers("/customers/**").permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/users/**","/roles/**").authenticated()
-                .and().formLogin()
+                .and().httpBasic()
                 .and().build();
 
     }
