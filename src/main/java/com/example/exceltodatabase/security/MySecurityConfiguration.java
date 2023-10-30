@@ -5,6 +5,7 @@ import com.example.exceltodatabase.services.SecurityInfoSecurityDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -67,6 +68,7 @@ public class MySecurityConfiguration {
 
 
     @Bean
+    @Lazy // bean is initiated and created at the time of request
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService());
@@ -75,6 +77,7 @@ public class MySecurityConfiguration {
     }
 
     @Bean
+    @Lazy
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
